@@ -5,55 +5,45 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity,Image } from 'react
 import { AppLoading } from 'expo';
 import { LinearGradient } from 'expo-linear-gradient';
 
-
-export default class App extends React.Component {
+export default function App(){
   let [fontsLoaded] = useFonts({
     Oswald_400regular,
   });
-    if (!fontsLoaded) {
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  if (!fontsLoaded) {
     return <AppLoading />;
   }
-
-  state={
-    email:"",
-    password:""
-  }
-  render(){
-    return (
-      
-      <View style={styles.container}>
-        <Image style={styles.logoimg} source={require('./img/logoinicio.png')}/>
-        <Text style={styles.logo}>Iniciar Sesion</Text>
-        <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Email" 
-            placeholderTextColor="#ffffff"
-            onChangeText={text => this.setState({email:text})}/>
-        </View>
-        <View style={styles.inputView} >
-          <TextInput  
-            secureTextEntry
-            style={styles.inputText}
-            placeholder="Contraseña" 
-            placeholderTextColor="#ffffff"
-            onChangeText={text => this.setState({password:text})}/>
-        </View>
-        <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText}>Iniciar Sesion</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.loginText}>Registrarse</Text>
-        </TouchableOpacity>
-        
-
-  
+  return (
+    <View style={styles.container}>
+      <Image style={styles.logoimg} source={require('./img/logoinicio.png')}/>
+      <Text style={styles.logo}>Iniciar Sesion</Text>
+      <View style={styles.inputView} >
+        <TextInput  
+          style={styles.inputText}
+          placeholder="Email" 
+          placeholderTextColor="#ffffff"
+          onChangeText={text => setEmail(text)}/>
       </View>
-    );
-  }
+      <View style={styles.inputView} >
+        <TextInput  
+          secureTextEntry
+          style={styles.inputText}
+          placeholder="Contraseña" 
+          placeholderTextColor="#ffffff"
+          onChangeText={text => setPassword(text)}/>
+      </View>
+      <TouchableOpacity style={styles.loginBtn}>
+        <Text style={styles.loginText}>Iniciar Sesion</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.forgot}>Forgot Password?</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.loginText}>Registrarse</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
